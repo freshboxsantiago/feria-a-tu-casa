@@ -91,15 +91,18 @@ export default function Home() {
           {/* USER NAV */}
           <div className="flex gap-2">
             {user ? (
-              <div className="flex flex-col items-end">
-                <span className="text-[10px] font-black text-gray-400 uppercase">Bienvenido</span>
-                <button onClick={handleLogout} className="text-xs font-bold text-red-500 underline">Cerrar Sesión</button>
-              </div>
-            ) : (
-              <Link href="/register" className="bg-gray-900 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md">
-                Iniciar Sesión / Registro
-              </Link>
-            )}
+  <div className="flex gap-4 items-center">
+    <Link href="/profile" className="flex flex-col items-end">
+      <span className="text-[10px] font-black text-gray-400 uppercase">Mi Cuenta</span>
+      <span className="text-sm font-bold text-green-600">Ver Perfil 👤</span>
+    </Link>
+    <button onClick={handleLogout} className="p-2 text-red-300 hover:text-red-500">✕</button>
+  </div>
+) : (
+  <Link href="/register" className="bg-gray-900 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md">
+    Entrar / Registrarse
+  </Link>
+)}
           </div>
         </header>
 
