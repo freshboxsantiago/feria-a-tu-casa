@@ -22,7 +22,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [isPaying, setIsPaying] = useState(false);
 
-  const MY_PHONE = "569XXXXXXXX"; 
+  const MY_PHONE = "56999303808"; 
 
   useEffect(() => {
     async function init() {
