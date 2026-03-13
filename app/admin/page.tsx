@@ -77,4 +77,19 @@ export default function AdminPage() {
       </div>
     </div>
   );
+  // ... (mismo código de antes)
+<header className="max-w-6xl mx-auto mb-10 flex justify-between items-center">
+  <div>
+    <h1 className="text-3xl font-black italic text-green-400">Clientes Registrados 👥</h1>
+  </div>
+  <div className="flex gap-4">
+    <Link href="/admin/products" className="bg-green-600 px-6 py-3 rounded-2xl text-sm font-bold shadow-lg hover:bg-green-700 transition">
+      📦 Gestionar Productos
+    </Link>
+    <Link href="/" className="bg-gray-800 px-6 py-3 rounded-2xl text-sm font-bold border border-gray-700">
+      Salir
+    </Link>
+  </div>
+</header>
+// ...
 }

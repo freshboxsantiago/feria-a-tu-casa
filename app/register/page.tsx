@@ -57,13 +57,15 @@ export default function AuthPage() {
             />
           )}
           <input 
-            type="email" placeholder="Email" 
-            className="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 transition outline-none"
-            onChange={(e) => setEmail(e.target.value)} required
-          />
+  type="email" 
+  placeholder="Email" 
+  className="w-full p-4 bg-white border-2 border-gray-200 rounded-2xl focus:border-green-500 text-gray-900 placeholder-gray-400 font-bold transition outline-none"
+  onChange={(e) => setEmail(e.target.value)} 
+  required
+/>
           <input 
             type="password" placeholder="Contraseña" 
-            className="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-green-500 transition outline-none"
+            className="w-full p-4 bg-white border-2 border-gray-200 rounded-2xl focus:border-green-500 text-gray-900 placeholder-gray-400 font-bold transition outline-none"
             onChange={(e) => setPassword(e.target.value)} required
           />
           <button className="w-full bg-green-600 text-white py-4 rounded-2xl font-black shadow-lg hover:bg-green-700 transition active:scale-95">
