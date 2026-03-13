@@ -17,7 +17,7 @@ export async function middleware(request: NextRequest) {
           return request.cookies.getAll()
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
+          cookiesToSet.forEach(({ name, value, options }) => request.cookies.set(name, value))
           response = NextResponse.next({
             request,
           })
@@ -29,30 +29,26 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  // Usamos getUser() que es la forma segura de verificar la sesión en el servidor
-  const { data: { user } } = await supabase.auth.getUser()
+  // IMPORTANTE: Usar getUser() es más seguro, pero asegúrate de que no haya errores de red
+  const { data: { user }, error } = await supabase.auth.getUser()
 
-  // Proteger las rutas de administración
+  // Si intentas entrar a /admin
   if (request.nextUrl.pathname.startsWith('/admin')) {
-    if (!user) {
-      // Si no hay usuario, redirigir al login
+    // Si no hay usuario O hay un error en la sesión, rebotar a registro
+    if (error || !user) {
       return NextResponse.redirect(new URL('/register', request.url))
     }
-    
-    // OPCIONAL: Si quieres que SOLO TÚ seas admin, descomenta esto:
-     if (user.email !== 'freshboxsantiago@gmail.com') {
-       return NextResponse.redirect(new URL('/', request.url))
-     }
+
+    // SEGURIDAD EXTRA: Solo tu correo maestro puede entrar
+    // Reemplaza esto con tu correo real
+    if (user.email !== 'freshboxsantiago@gmail.com') {
+      return NextResponse.redirect(new URL('/', request.url))
+    }
   }
 
   return response
 }
 
 export const config = {
-  matcher: [
-    /*
-     * Coincidir con todas las rutas de /admin y sus sub-rutas
-     */
-    '/admin/:path*',
-  ],
+  matcher: ['/admin/:path*'],
 }
